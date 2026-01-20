@@ -17,11 +17,11 @@ def test_complete_flow():
     login.login(creds["username"], creds["password"])
 
     inventory = InventoryPage(driver)
-    inventory.add_product_to_cart("Bike Light")
+    inventory.add_product_to_cart(config.PRODUCT1)
 
-    inventory.remove_product_from_cart("T-Shirt (Red)")
+    inventory.remove_product_from_cart(config.PRODUCT1)
 
-    inventory.see_product_page("Onesie") 
+    inventory.see_product_page(config.PRODUCT2) 
     
     Onesie_Page = ProductPage(driver)
 
@@ -29,19 +29,19 @@ def test_complete_flow():
     Onesie_Page.go_to_cart()
 
     cart = CartPage(driver)
-    cart.remove_product("Onesie")
+    cart.remove_product(config.PRODUCT2)
 
     cart.continue_shopping()
 
-    inventory.add_product_to_cart("Fleece Jacket")
-    inventory.add_product_to_cart("Bolt T-Shirt")
+    inventory.add_product_to_cart(config.PRODUCT3)
+    inventory.add_product_to_cart(config.PRODUCT4)
 
     inventory.go_to_cart()
 
     cart.proceed_to_checkout()
     
     checkout = CheckoutPage(driver)
-    checkout.enter_details("abc","xyz","lemon")
+    checkout.enter_details(config.fname, config.lname, config.postal_code)
 
     checkout.finish_checkout()
 
